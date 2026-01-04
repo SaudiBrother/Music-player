@@ -1,0 +1,37 @@
+.equalizer-panel, .theme-panel, .playlist-panel {
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 10px;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+}
+
+.equalizer-panel.active, .theme-panel.active, .playlist-panel.active {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.eq-sliders {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 8px;
+}
+
+.eq-slider {
+    width: 30px;
+    height: 180px;
+    -webkit-appearance: slider-vertical;
+    appearance: slider-vertical;
+    cursor: pointer;
+}
