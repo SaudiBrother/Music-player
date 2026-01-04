@@ -8,24 +8,34 @@
     <meta name="author" content="Music Player Pro">
     <title>Music Player Pro | Advanced Audio Experience</title>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="src/css/main.css">
     <link rel="stylesheet" href="src/css/themes.css">
     <link rel="stylesheet" href="src/css/components/controls.css">
     <link rel="stylesheet" href="src/css/components/equalizer.css">
     <link rel="stylesheet" href="src/css/components/animations.css">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
+
+    <style>
+        /* Tambahan CSS inline untuk memastikan tombol upload terlihat mencolok */
+        .btn-upload-manual {
+            background: var(--accent-color, #00d4ff) !important;
+            color: white !important;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .btn-upload-manual:hover {
+            transform: scale(1.1);
+        }
+    </style>
 </head>
 <body class="theme-dark">
     <div id="app" class="app-container">
-        <!-- Drop Zone -->
         <div id="dropZone" class="drop-zone">
             <div class="drop-content">
                 <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -35,18 +45,16 @@
                 </svg>
                 <p>Drag & Drop musik di sini</p>
                 <span>atau klik untuk upload</span>
-                <input type="file" id="fileInput" accept="audio/*" multiple hidden>
             </div>
         </div>
 
-        <!-- Main Player -->
+        <input type="file" id="fileInput" accept="audio/*" multiple hidden>
+
         <main class="player-wrapper">
-            <!-- Visualizer -->
             <div class="visualizer-container">
                 <canvas id="visualizer" class="visualizer-canvas"></canvas>
             </div>
 
-            <!-- Player Info -->
             <div class="player-info">
                 <div class="album-art">
                     <div class="art-placeholder">
@@ -58,8 +66,8 @@
                     </div>
                 </div>
                 <div class="track-details">
-                    <h2 class="track-title">Pilih musik untuk dimulai</h2>
-                    <p class="track-artist">Music Player Pro</p>
+                    <h2 class="track-title">Siap memutar musik</h2>
+                    <p class="track-artist">Klik tombol + untuk menambah lagu</p>
                     <div class="track-progress">
                         <div class="progress-bar">
                             <div class="progress-fill"></div>
@@ -73,7 +81,6 @@
                 </div>
             </div>
 
-            <!-- Controls -->
             <div class="player-controls">
                 <div class="control-group">
                     <button class="btn btn-shuffle" title="Shuffle">
@@ -119,7 +126,6 @@
                 </div>
             </div>
 
-            <!-- Volume & Settings -->
             <div class="player-settings">
                 <div class="volume-control">
                     <svg class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -127,10 +133,16 @@
                         <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
                     </svg>
                     <input type="range" class="volume-slider" min="0" max="100" value="70">
-                    <span class="volume-value">70</span>
                 </div>
 
                 <div class="settings-buttons">
+                    <button class="btn btn-settings btn-upload-manual" id="manualUploadBtn" title="Tambah Lagu">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                    </button>
+                    
                     <button class="btn btn-settings" id="eqBtn" title="Equalizer">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <rect x="3" y="5" width="2" height="14"></rect>
@@ -149,99 +161,56 @@
                             <line x1="8" y1="6" x2="21" y2="6"></line>
                             <line x1="8" y1="12" x2="21" y2="12"></line>
                             <line x1="8" y1="18" x2="21" y2="18"></line>
-                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            <circle cx="3" cy="6" r="1"></circle>
+                            <circle cx="3" cy="12" r="1"></circle>
+                            <circle cx="3" cy="18" r="1"></circle>
                         </svg>
                     </button>
                 </div>
             </div>
 
-            <!-- Equalizer Panel -->
             <div class="equalizer-panel" id="equalizerPanel">
-                <div class="eq-header">
-                    <h3>10-Band Equalizer</h3>
-                    <div class="eq-presets">
-                        <button class="preset-btn" data-preset="flat">Flat</button>
-                        <button class="preset-btn" data-preset="bass">Bass</button>
-                        <button class="preset-btn" data-preset="treble">Treble</button>
-                        <button class="preset-btn" data-preset="vocal">Vocal</button>
-                        <button class="preset-btn" data-preset="pop">Pop</button>
-                        <button class="preset-btn" data-preset="rock">Rock</button>
-                    </div>
-                </div>
-                <div class="eq-sliders">
-                    <!-- Akan di-generate oleh JavaScript -->
-                </div>
+                <div class="eq-header"><h3>10-Band Equalizer</h3></div>
+                <div class="eq-sliders"></div>
             </div>
 
-            <!-- Theme Selector Panel -->
             <div class="theme-panel" id="themePanel">
                 <h3>Pilih Tema</h3>
-                <div class="theme-grid">
-                    <!-- Akan di-generate oleh JavaScript -->
-                </div>
+                <div class="theme-grid"></div>
             </div>
 
-            <!-- Playlist Panel -->
             <div class="playlist-panel" id="playlistPanel">
                 <div class="playlist-header">
                     <h3>Playlist</h3>
-                    <button class="btn-clear" title="Clear">Clear All</button>
+                    <button class="btn-clear">Clear All</button>
                 </div>
-                <div class="playlist-items">
-                    <!-- Akan di-populasi secara dinamis -->
-                </div>
+                <div class="playlist-items"></div>
             </div>
 
-            <!-- Audio Element (Hidden) -->
             <audio id="audio" crossorigin="anonymous" preload="metadata" style="display: none;"></audio>
         </main>
-
-        <!-- Loading Indicator (Optional) -->
-        <div id="loading" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000;">
-            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 2a10 10 0 0 1 0 20" stroke-linecap="round"></path>
-            </svg>
-        </div>
     </div>
 
-    <!-- JavaScript Libraries -->
-    <!-- Icons Library -->
     <script src="src/assets/icons.js"></script>
-    
-    <!-- Core Modules -->
     <script src="src/js/core/AudioEngine.js"></script>
     <script src="src/js/core/FileHandler.js"></script>
-    
-    <!-- UI Modules -->
     <script src="src/js/ui/ThemeManager.js"></script>
     <script src="src/js/ui/Visualizer.js"></script>
     <script src="src/js/ui/DOMBuilder.js"></script>
-    
-    <!-- Main Application -->
     <script src="src/js/app.js"></script>
     
-    <!-- Service Worker (Optional - for PWA) -->
     <script>
-        // Register service worker for PWA capabilities
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registered:', registration);
-                }).catch(error => {
-                    console.log('ServiceWorker registration failed:', error);
+        // Logika penghubung tombol manual ke input file tersembunyi
+        document.addEventListener('DOMContentLoaded', () => {
+            const manualBtn = document.getElementById('manualUploadBtn');
+            const fileInput = document.getElementById('fileInput');
+            
+            if(manualBtn && fileInput) {
+                manualBtn.addEventListener('click', () => {
+                    fileInput.click();
                 });
-            });
-        }
-        
-        // Prevent right-click context menu (optional)
-        document.addEventListener('contextmenu', (e) => {
-            if (e.target.tagName === 'CANVAS' || e.target.closest('.player-wrapper')) {
-                e.preventDefault();
             }
         });
     </script>
 </body>
-    </html>
+</html>
