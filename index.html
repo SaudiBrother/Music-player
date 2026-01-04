@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Professional Music Player dengan 20+ UI Themes & 10-Band Equalizer">
+    <meta name="keywords" content="music player, audio player, equalizer, web audio, visualizer">
+    <meta name="author" content="Music Player Pro">
     <title>Music Player Pro | Advanced Audio Experience</title>
     
     <!-- CSS -->
@@ -17,13 +19,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎵</text></svg>">
 </head>
 <body class="theme-dark">
     <div id="app" class="app-container">
         <!-- Drop Zone -->
         <div id="dropZone" class="drop-zone">
             <div class="drop-content">
-                <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <svg class="drop-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                     <polyline points="17 8 12 3 7 8"></polyline>
                     <line x1="12" y1="3" x2="12" y2="15"></line>
@@ -189,17 +194,54 @@
                 </div>
             </div>
 
-            <!-- Audio Element -->
-            <audio id="audio" crossorigin="anonymous" preload="metadata"></audio>
+            <!-- Audio Element (Hidden) -->
+            <audio id="audio" crossorigin="anonymous" preload="metadata" style="display: none;"></audio>
         </main>
+
+        <!-- Loading Indicator (Optional) -->
+        <div id="loading" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000;">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 2a10 10 0 0 1 0 20" stroke-linecap="round"></path>
+            </svg>
+        </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- JavaScript Libraries -->
+    <!-- Icons Library -->
+    <script src="src/assets/icons.js"></script>
+    
+    <!-- Core Modules -->
     <script src="src/js/core/AudioEngine.js"></script>
     <script src="src/js/core/FileHandler.js"></script>
+    
+    <!-- UI Modules -->
     <script src="src/js/ui/ThemeManager.js"></script>
     <script src="src/js/ui/Visualizer.js"></script>
     <script src="src/js/ui/DOMBuilder.js"></script>
+    
+    <!-- Main Application -->
     <script src="src/js/app.js"></script>
+    
+    <!-- Service Worker (Optional - for PWA) -->
+    <script>
+        // Register service worker for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registered:', registration);
+                }).catch(error => {
+                    console.log('ServiceWorker registration failed:', error);
+                });
+            });
+        }
+        
+        // Prevent right-click context menu (optional)
+        document.addEventListener('contextmenu', (e) => {
+            if (e.target.tagName === 'CANVAS' || e.target.closest('.player-wrapper')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
     </html>
