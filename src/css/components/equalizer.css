@@ -1,3 +1,4 @@
+/* Equalizer Visualizations */
 .eq-visual {
     display: flex;
     align-items: flex-end;
@@ -14,6 +15,31 @@
     width: 3px;
     background: linear-gradient(180deg, #00d4ff, #0099ff);
     border-radius: 2px;
-    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+    transition: height 0.05s linear;
     will-change: height;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+/* Frequency Labels */
+.freq-label {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* EQ Status */
+.eq-status {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.eq-status.modified {
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.1);
 }
