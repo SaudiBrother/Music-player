@@ -1,29 +1,44 @@
 /**
- * DOM Builder - Membuat elemen UI secara dinamis
+ * DOM Builder - Membangun elemen UI Playlist
  */
 class DOMBuilder {
-    static createPlaylistItem(track, index, isActive = false) {
-        const div = document.createElement('div');
-        div.className = `playlist-item ${isActive ? 'active' : ''}`;
-        div.dataset.index = index;
-        
-        div.innerHTML = `
-            <div class="item-info">
-                <span class="item-number">${index + 1}</span>
-                <div class="item-details">
-                    <span class="item-name">${track.name}</span>
-                </div>
-            </div>
-            <div class="item-duration">--:--</div>
-        `;
-        
-        return div;
+    constructor(fileHandler, audioEngine) {
+        this.fileHandler = fileHandler;
+        this.audioEngine = audioEngine;
+        this.container = document.querySelector('.playlist-items');
     }
 
-    static updateActiveTrack(index) {
-        const items = document.querySelectorAll('.playlist-item');
-        items.forEach(item => {
-            item.classList.toggle('active', parseInt(item.dataset.index) === index);
+    updatePlaylist(playlist) {
+        if (!this.container) return;
+        this.container.innerHTML = '';
+
+        playlist.forEach((track, index) => {
+            const item = document.createElement('div');
+            item.className = 'playlist-item';
+            item.innerHTML = `
+                <div class="playlist-item-title">${track.name}</div>
+                <div class="playlist-item-duration">0:00</div>
+            `;
+            
+            item.addEventListener('click', () => {
+                this.playTrack(index);
+            });
+
+            this.container.appendChild(item);
         });
+    }
+
+    playTrack(index) {
+        const track = this.fileHandler.playlist[index];
+        if (track) {
+            this.audioEngine.load(track.url);
+            this.audioEngine.play();
+            document.querySelector('.track-title').textContent = track.name;
+            
+            // Tandai item aktif di UI
+            const allItems = document.querySelectorAll('.playlist-item');
+            allItems.forEach(el => el.classList.remove('playing'));
+            allItems[index].classList.add('playing');
+        }
     }
 }
