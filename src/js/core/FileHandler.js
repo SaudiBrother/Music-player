@@ -13,124 +13,75 @@ class FileHandler {
     }
 
     init() {
-        // Prevent default behavior
+        // Prevent default drag behaviors
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-            this.dropZone.addEventListener(eventName, (e) => e.preventDefault(), false);
-            document.body.addEventListener(eventName, (e) => e.preventDefault(), false);
+            document.body.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
         });
 
-        // Highlight drop zone
-        ['dragenter', 'dragover'].forEach(eventName => {
-            this.dropZone.addEventListener(eventName, () => this.dropZone.classList.add('active'), false);
+        // Highlight drop zone saat file diseret
+        window.addEventListener('dragenter', () => {
+            if(this.dropZone) this.dropZone.classList.add('active');
         });
 
-        ['dragleave', 'drop'].forEach(eventName => {
-            this.dropZone.addEventListener(eventName, () => this.dropZone.classList.remove('active'), false);
-        });
+        if (this.dropZone) {
+            this.dropZone.addEventListener('dragleave', (e) => {
+                if (e.relatedTarget === null) this.dropZone.classList.remove('active');
+            });
 
-        // Handle drop
-        this.dropZone.addEventListener('drop', (e) => {
-            const files = e.dataTransfer.files;
-            this.handleFiles(files);
-        });
+            this.dropZone.addEventListener('drop', (e) => {
+                const files = e.dataTransfer.files;
+                this.handleFiles(files);
+            });
 
-        // Handle click to upload
-        this.dropZone.addEventListener('click', () => {
-            this.fileInput.click();
-        });
+            // Klik pada area drop zone juga bisa upload
+            this.dropZone.addEventListener('click', () => {
+                this.fileInput.click();
+            });
+        }
+    }
 
-        // Handle file input change
-        this.fileInput.addEventListener('change', (e) => {
-            this.handleFiles(e.target.files);
-        });
-
-        console.log('✓ File Handler initialized');
+    // Fungsi utama yang dipanggil oleh app.js atau input change
+    handleFileSelect(e) {
+        const files = e.target.files;
+        this.handleFiles(files);
     }
 
     handleFiles(files) {
-        const audioFiles = Array.from(files).filter(file => 
-            file.type.startsWith('audio/')
-        );
-
+        const audioFiles = Array.from(files).filter(file => file.type.startsWith('audio/'));
+        
         if (audioFiles.length === 0) {
-            alert('Pilih file audio yang valid (MP3, WAV, OGG, dll)');
+            alert('Mohon pilih file audio saja (MP3, WAV, dll)');
             return;
         }
 
+        // Tambahkan ke playlist yang sudah ada
         audioFiles.forEach(file => {
-            const url = URL.createObjectURL(file);
-            const item = {
-                name: file.name.replace(/\.[^/.]+$/, ''),
-                url: url,
-                duration: 0,
-                file: file
-            };
-
-            this.playlist.push(item);
+            this.playlist.push(file);
         });
 
-        // Trigger callback
-        if (this.onFilesAdded) {
+        console.log(`Berhasil menambahkan ${audioFiles.length} lagu.`);
+
+        // Panggil callback agar app.js tahu ada lagu baru
+        if (typeof this.onFilesAdded === 'function') {
             this.onFilesAdded(this.playlist);
         }
 
-        // Hide drop zone setelah file ditambahkan
-        this.dropZone.style.display = 'none';
-
-        console.log(`✓ ${audioFiles.length} file(s) added to playlist`);
+        // Sembunyikan drop zone jika aktif
+        if(this.dropZone) this.dropZone.classList.remove('active');
     }
 
     getPlaylist() {
         return this.playlist;
     }
 
-    getCurrentTrack() {
-        return this.playlist[this.currentIndex] || null;
-    }
-
-    setCurrentIndex(index) {
-        if (index >= 0 && index < this.playlist.length) {
-            this.currentIndex = index;
-            return true;
-        }
-        return false;
-    }
-
-    getNextTrack() {
-        if (this.currentIndex < this.playlist.length - 1) {
-            this.currentIndex++;
-            return this.getCurrentTrack();
-        }
-        return null;
-    }
-
-    getPreviousTrack() {
-        if (this.currentIndex > 0) {
-            this.currentIndex--;
-            return this.getCurrentTrack();
-        }
-        return null;
-    }
-
-    removeTrack(index) {
-        this.playlist.splice(index, 1);
-        if (this.currentIndex >= this.playlist.length) {
-            this.currentIndex = Math.max(0, this.playlist.length - 1);
-        }
-    }
-
     clearPlaylist() {
         this.playlist = [];
         this.currentIndex = 0;
     }
-
-    getCurrentIndex() {
-        return this.currentIndex;
-    }
-
-    getPlaylistLength() {
-        return this.playlist.length;
-    }
 }
 
+// Inisialisasi secara global
 const fileHandler = new FileHandler();
