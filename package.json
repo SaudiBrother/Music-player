@@ -1,18 +1,28 @@
 {
   "name": "music-player-pro",
   "version": "1.0.0",
-  "description": "Professional music player with advanced UI and Equalizer",
-  "main": "src/js/app.js",
+  "description": "Professional music player web application with 10-band equalizer and 20+ themes",
+  "main": "index.html",
   "scripts": {
-    "start": "live-server",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "python -m http.server 8000",
+    "dev": "npx http-server -p 8000",
+    "build": "echo 'No build needed - vanilla JS'",
+    "test": "echo 'No tests configured'",
+    "lint": "echo 'No linter configured'"
   },
   "keywords": [
-    "music",
-    "player",
-    "audio-api",
-    "visualizer"
+    "music-player",
+    "audio",
+    "equalizer",
+    "web-audio-api",
+    "visualizer",
+    "themes",
+    "responsive"
   ],
-  "author": "Your Name",
-  "license": "MIT"
+  "author": "SaudiBrother",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SaudiBrother/music-player-pro.git"
+  }
 }
