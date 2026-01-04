@@ -1,4 +1,7 @@
-.equalizer-panel, .theme-panel, .playlist-panel {
+/* Equalizer Panel */
+.equalizer-panel,
+.theme-panel,
+.playlist-panel {
     position: absolute;
     bottom: 100%;
     left: 20px;
@@ -12,26 +15,311 @@
     max-height: 0;
     overflow: hidden;
     opacity: 0;
+    transform: translateY(10px);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 100;
+    pointer-events: none;
+    will-change: max-height, opacity, transform;
 }
 
-.equalizer-panel.active, .theme-panel.active, .playlist-panel.active {
+.equalizer-panel.active,
+.theme-panel.active,
+.playlist-panel.active {
     max-height: 500px;
     opacity: 1;
     transform: translateY(0);
+    pointer-events: all;
 }
 
+.eq-header,
+.theme-panel > h3,
+.playlist-header {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eq-header h3,
+.theme-panel > h3,
+.playlist-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.eq-presets {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    padding: 6px 12px;
+    background: rgba(0, 212, 255, 0.2);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    color: #00d4ff;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    will-change: background, border-color;
+}
+
+.preset-btn:hover {
+    background: rgba(0, 212, 255, 0.3);
+    border-color: rgba(0, 212, 255, 0.6);
+}
+
+.preset-btn.active {
+    background: rgba(0, 212, 255, 0.5);
+    border-color: #00d4ff;
+}
+
+/* Equalizer Sliders */
 .eq-sliders {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+    gap: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.eq-slider-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 8px;
 }
 
 .eq-slider {
     width: 30px;
     height: 180px;
+    writing-mode: bt-lr;
     -webkit-appearance: slider-vertical;
     appearance: slider-vertical;
+    border: none;
+    outline: none;
+    background: transparent;
     cursor: pointer;
+    accent-color: #00d4ff;
 }
+
+.eq-slider::-webkit-slider-track {
+    background: rgba(255, 255, 255, 0.1);
+    width: 4px;
+    border-radius: 2px;
+}
+
+.eq-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 8px;
+    background: #00d4ff;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+}
+
+.eq-slider::-moz-range-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.eq-slider::-moz-range-thumb {
+    width: 20px;
+    height: 8px;
+    background: #00d4ff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 212, 255, 0.3);
+}
+
+.eq-label {
+    font-size: 11px;
+    opacity: 0.7;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: 500;
+}
+
+.eq-value {
+    font-size: 9px;
+    opacity: 0.5;
+    min-height: 14px;
+}
+
+/* Theme Grid */
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.theme-option {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    overflow: hidden;
+    position: relative;
+    will-change: border-color, transform;
+}
+
+.theme-option:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.theme-option.active {
+    border-color: #00d4ff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+.theme-preview {
+    width: 100%;
+    height: 100%;
+    background: var(--preview-gradient);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 4px;
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+}
+
+.theme-option:hover .theme-preview {
+    opacity: 1;
+}
+
+.theme-option.active .theme-preview {
+    opacity: 1;
+    color: #00d4ff;
+}
+
+/* Playlist Panel */
+.playlist-header {
+    justify-content: space-between;
+}
+
+.btn-clear {
+    padding: 6px 12px;
+    background: rgba(255, 100, 100, 0.2);
+    border: 1px solid rgba(255, 100, 100, 0.4);
+    color: #ff6464;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-clear:hover {
+    background: rgba(255, 100, 100, 0.3);
+}
+
+.playlist-items {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.playlist-item {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    will-change: background;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-item.playing {
+    background: rgba(0, 212, 255, 0.2);
+    border-left: 3px solid #00d4ff;
+    padding-left: 7px;
+}
+
+.playlist-item-title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}
+
+.playlist-item-duration {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.playlist-item-remove {
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 100, 100, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.playlist-item-remove:hover {
+    color: #ff6464;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .equalizer-panel,
+    .theme-panel,
+    .playlist-panel {
+        left: 10px;
+        right: 10px;
+    }
+
+    .theme-grid {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    }
+
+    .eq-sliders {
+        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .equalizer-panel,
+    .theme-panel,
+    .playlist-panel {
+        max-height: 400px;
+    }
+
+    .theme-grid {
+        grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    }
+
+    .eq-sliders {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .eq-slider {
+        height: 150px;
+    }
+        }
