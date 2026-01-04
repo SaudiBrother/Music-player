@@ -1,7 +1,17 @@
+/* ===== DARK THEMES ===== */
+
 /* Theme: Dark (Default) */
 .theme-dark {
     background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
     color: #ffffff;
+}
+
+.theme-dark .drop-zone.active {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.theme-dark .btn {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Theme: Neon Dark */
@@ -10,8 +20,55 @@
     color: #00ff88;
 }
 
+.theme-neon-dark .drop-zone.active {
+    background: rgba(0, 255, 136, 0.1);
+}
+
 .theme-neon-dark .progress-fill {
     background: linear-gradient(90deg, #00ff88, #00ffff);
+}
+
+.theme-neon-dark .btn-play-large {
+    background: linear-gradient(135deg, #00ff88, #00ffff);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4), inset 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.theme-neon-dark .btn-play-large:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.6), inset 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+.theme-neon-dark .visualizer-container {
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 255, 255, 0.05));
+}
+
+/* Theme: Purple Night */
+.theme-purple-night {
+    background: linear-gradient(135deg, #1a0033 0%, #330066 100%);
+    color: #e0b0ff;
+}
+
+.theme-purple-night .progress-fill {
+    background: linear-gradient(90deg, #e0b0ff, #b366ff);
+}
+
+.theme-purple-night .btn-play-large {
+    background: linear-gradient(135deg, #e0b0ff, #b366ff);
+    box-shadow: 0 8px 20px rgba(224, 176, 255, 0.3);
+}
+
+/* Theme: Ocean Deep */
+.theme-ocean-deep {
+    background: linear-gradient(135deg, #001a4d 0%, #003d99 100%);
+    color: #00d4ff;
+}
+
+.theme-ocean-deep .progress-fill {
+    background: linear-gradient(90deg, #00d4ff, #0099ff);
+}
+
+.theme-ocean-deep .btn-play-large {
+    background: linear-gradient(135deg, #00d4ff, #0099ff);
+    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
 }
 
 /* Theme: Cyberpunk */
@@ -20,10 +77,50 @@
     color: #ff006e;
 }
 
+.theme-cyberpunk .progress-fill {
+    background: linear-gradient(90deg, #ff006e, #ffbe0b);
+}
+
 .theme-cyberpunk .btn-play-large {
     background: linear-gradient(135deg, #ff006e, #ffbe0b);
     box-shadow: 0 0 20px rgba(255, 0, 110, 0.4);
 }
+
+.theme-cyberpunk .visualizer-container {
+    background: linear-gradient(135deg, rgba(255, 0, 110, 0.05), rgba(255, 190, 11, 0.05));
+}
+
+/* Theme: Forest */
+.theme-forest {
+    background: linear-gradient(135deg, #0d2f0d 0%, #1a4d1a 100%);
+    color: #66ff66;
+}
+
+.theme-forest .progress-fill {
+    background: linear-gradient(90deg, #66ff66, #00ff99);
+}
+
+.theme-forest .btn-play-large {
+    background: linear-gradient(135deg, #66ff66, #00ff99);
+    box-shadow: 0 8px 20px rgba(102, 255, 102, 0.3);
+}
+
+/* Theme: Sunset */
+.theme-sunset {
+    background: linear-gradient(135deg, #2d1b00 0%, #4d3000 100%);
+    color: #ffb366;
+}
+
+.theme-sunset .progress-fill {
+    background: linear-gradient(90deg, #ffb366, #ff8533);
+}
+
+.theme-sunset .btn-play-large {
+    background: linear-gradient(135deg, #ffb366, #ff8533);
+    box-shadow: 0 8px 20px rgba(255, 179, 102, 0.3);
+}
+
+/* ===== LIGHT THEMES ===== */
 
 /* Theme: Light */
 .theme-light {
@@ -31,7 +128,249 @@
     color: #1a1a1a;
 }
 
+.theme-light .drop-zone.active {
+    background: rgba(255, 255, 255, 0.9);
+}
+
 .theme-light .btn {
     background: rgba(0, 0, 0, 0.08);
     color: rgba(0, 0, 0, 0.7);
 }
+
+.theme-light .btn:hover {
+    background: rgba(0, 0, 0, 0.12);
+}
+
+.theme-light .progress-bar {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-light .volume-slider {
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-light .album-art {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.02));
+}
+
+/* Theme: Minimal Light */
+.theme-minimal-light {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    color: #333333;
+}
+
+.theme-minimal-light .btn {
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.theme-minimal-light .btn-play-large {
+    background: linear-gradient(135deg, #333333, #666666);
+    color: white;
+}
+
+/* Theme: Pastel */
+.theme-pastel {
+    background: linear-gradient(135deg, #fff5f7 0%, #f0e6ff 100%);
+    color: #6b4c9a;
+}
+
+.theme-pastel .progress-fill {
+    background: linear-gradient(90deg, #ff85b3, #c166ff);
+}
+
+.theme-pastel .btn-play-large {
+    background: linear-gradient(135deg, #ff85b3, #c166ff);
+    color: white;
+    box-shadow: 0 8px 20px rgba(255, 133, 179, 0.2);
+}
+
+.theme-pastel .btn {
+    background: rgba(107, 76, 154, 0.08);
+    color: rgba(107, 76, 154, 0.7);
+}
+
+/* Theme: Mint */
+.theme-mint {
+    background: linear-gradient(135deg, #e0f7f4 0%, #cce5e0 100%);
+    color: #0d5a56;
+}
+
+.theme-mint .progress-fill {
+    background: linear-gradient(90deg, #00c4a4, #00d99f);
+}
+
+.theme-mint .btn-play-large {
+    background: linear-gradient(135deg, #00c4a4, #00d99f);
+    color: white;
+    box-shadow: 0 8px 20px rgba(0, 196, 164, 0.2);
+}
+
+/* Theme: Peach */
+.theme-peach {
+    background: linear-gradient(135deg, #ffe5d9 0%, #ffd9c4 100%);
+    color: #a0522d;
+}
+
+.theme-peach .progress-fill {
+    background: linear-gradient(90deg, #ff9f6f, #ffb366);
+}
+
+.theme-peach .btn-play-large {
+    background: linear-gradient(135deg, #ff9f6f, #ffb366);
+    color: white;
+}
+
+/* ===== MIXED THEMES ===== */
+
+/* Theme: Glassmorphism Dark */
+.theme-glass-dark {
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+}
+
+.theme-glass-dark .visualizer-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-glass-dark .btn {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Theme: Glassmorphism Light */
+.theme-glass-light {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+    color: #333333;
+}
+
+.theme-glass-light .visualizer-container {
+    background: rgba(0, 0, 0, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.theme-glass-light .btn {
+    background: rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Theme: Neumorphism */
+.theme-neumorphism {
+    background: linear-gradient(135deg, #e0e5ec 0%, #f8f9fa 100%);
+    color: #333333;
+}
+
+.theme-neumorphism .btn {
+    background: linear-gradient(145deg, #ffffff, #e0e5ec);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 -2px 5px rgba(0, 0, 0, 0.05);
+    color: #555555;
+}
+
+.theme-neumorphism .btn-play-large {
+    background: linear-gradient(145deg, #f0f9ff, #e0e5ec);
+    color: #0099ff;
+}
+
+/* Theme: High Contrast Dark */
+.theme-contrast-dark {
+    background: #000000;
+    color: #ffffff;
+}
+
+.theme-contrast-dark .btn {
+    border: 2px solid #ffffff;
+    background: transparent;
+}
+
+.theme-contrast-dark .progress-bar {
+    background: #333333;
+    border: 1px solid #ffffff;
+}
+
+.theme-contrast-dark .btn-play-large {
+    background: #ffffff;
+    color: #000000;
+    border: none;
+}
+
+/* Theme: High Contrast Light */
+.theme-contrast-light {
+    background: #ffffff;
+    color: #000000;
+}
+
+.theme-contrast-light .btn {
+    border: 2px solid #000000;
+    background: transparent;
+}
+
+.theme-contrast-light .btn-play-large {
+    background: #000000;
+    color: #ffffff;
+    border: none;
+}
+
+/* Theme: Retro 80s */
+.theme-retro-80s {
+    background: linear-gradient(135deg, #ff006e 0%, #ffbe0b 100%);
+    color: #000000;
+}
+
+.theme-retro-80s .progress-fill {
+    background: linear-gradient(90deg, #000000, #333333);
+}
+
+.theme-retro-80s .btn-play-large {
+    background: #000000;
+    color: #ffbe0b;
+    box-shadow: 0 0 20px rgba(255, 190, 11, 0.4);
+}
+
+/* Theme: Vaporwave */
+.theme-vaporwave {
+    background: linear-gradient(135deg, #ff006e 0%, #b833ff 50%, #0099ff 100%);
+    color: #ffffff;
+}
+
+.theme-vaporwave .progress-fill {
+    background: linear-gradient(90deg, #ffbe0b, #ffffff);
+}
+
+.theme-vaporwave .btn-play-large {
+    background: linear-gradient(135deg, #ffbe0b, #ffffff);
+    color: #b833ff;
+    box-shadow: 0 8px 20px rgba(255, 190, 11, 0.3);
+}
+
+/* Theme: Monochrome */
+.theme-monochrome {
+    background: linear-gradient(135deg, #2d2d2d 0%, #5a5a5a 100%);
+    color: #e0e0e0;
+}
+
+.theme-monochrome .progress-fill {
+    background: linear-gradient(90deg, #ffffff, #cccccc);
+}
+
+.theme-monochrome .btn-play-large {
+    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    color: #2d2d2d;
+}
+
+/* Animation Transitions */
+@media (prefers-reduced-motion: no-preference) {
+    body {
+        transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .btn, .progress-bar {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+                                }
